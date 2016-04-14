@@ -28,7 +28,8 @@ class MeterSerializer(serializers.Serializer):
 
 """
 class MeterSerializer(serializers.ModelSerializer):
+    meters = serializers.StringRelatedField(many=True)
     class Meta:
         model = Meter
-        fields = ('id', 'active', 'area', 'latitude', 'longitude', 'meter_id', 'street_address')
+        fields = ('id', 'active', 'area', 'latitude', 'longitude', 'meter_id', 'street_address', 'meters')
 
