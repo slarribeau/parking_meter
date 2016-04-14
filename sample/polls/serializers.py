@@ -3,6 +3,7 @@ from rest_framework import serializers
 from polls.models import Meter
 
 
+"""
 class MeterSerializer(serializers.Serializer):
     pk = serializers.IntegerField(read_only=True)
     active = serializers.CharField(max_length=48);
@@ -13,15 +14,9 @@ class MeterSerializer(serializers.Serializer):
     street_address = serializers.CharField(max_length=48);
 
     def create(self, validated_data):
-        """
-        Create and return a new `Model` instance, given the validated data.
-        """
         return Model.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        """
-        Update and return an existing `Model` instance, given the validated data.
-        """
         instance.active = validated_data.get('active', instance.active)
         instance.area = validated_data.get('area', instance.area)
         instance.latitude = validated_data.get('latitude', instance.latitude)
@@ -30,4 +25,10 @@ class MeterSerializer(serializers.Serializer):
         instance.street_address = validated_data.get('street_address', instance.street_address)
         instance.save()
         return instance
+
+"""
+class MeterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Meter
+        fields = ('id', 'active', 'area', 'latitude', 'longitude', 'meter_id', 'street_address')
 
