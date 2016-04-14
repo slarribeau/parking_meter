@@ -3,8 +3,13 @@ from __future__ import unicode_literals
 from django.db import models
 
 #Steps to populate Meter table:
-#q=Meter(active='true', area='DOWNTOWN-CBD', longitude='-118.491760', latitude='34.01633', meter_id='MAI1612', street_address='1600 MAIN ST')
+# Django:
+#  q=Meter(active='true', area='DOWNTOWN-CBD', longitude='-118.491760', latitude='34.01633', meter_id='MAI1612', street_address='1600 MAIN ST')
 #q.save()
+#
+# SQL
+#insert into polls_meter values(3,'true', 'DOWNTOWN-CBD', 34.01639, -118.49171, 'MAI1662', '1696 MAIN ST');
+
 
 class Meter(models.Model):
   active = models.CharField(max_length=48);
