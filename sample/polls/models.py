@@ -15,6 +15,8 @@ class Meter(models.Model):
   street_address = models.CharField(max_length=48);
 
 #Steps to populate Events table:
+#from polls.models import Meter
+#m = Meter.objects.get(pk=1)
 #e1=Events(event_id='42846099', event_time='20160414T161824Z', event_type='SE', meter_id=m1, ordinal='41163977', session_id='264999866') 
 #e.save()
 class Events(models.Model):
