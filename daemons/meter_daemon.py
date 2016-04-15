@@ -17,6 +17,8 @@ def loop():
    file=urllib.urlopen('https://parking.api.smgov.net/meters')
    raw_string = file.read()
    raw_json = json.loads(raw_string)
+   conn = psycopg2.connect("dbname='django' user='djangouser' host='127.0.0.1' password='dbpass'")
+   cur = conn.cursor()
 
 
    processed = 0;
@@ -28,31 +30,19 @@ def loop():
       longitude = each.get('longitude', 'xxx');
       meter_id = each.get('meter_id', 'xxx');
       street_address = each.get('street_address', 'xxx');
-      #print active, street_address, meter_id, longitude, latitude
 
-      # id | active |     area     | latitude | longitude  | meter_id | street_address 
-
-
-
-      innerList=[]
-      innerList.append(processed)
-      innerList.append(active)
-      innerList.append(area)
-      innerList.append(latitude)
-      innerList.append(longitude)
-      innerList.append(meter_id)
-      innerList.append(street_address)
-      print innerList
-
+      print("""INSERT INTO polls_meter VALUES ('%s', '%s', '%s', %f, %f, '%s', '%s');""" % (processed,  active, area, latitude, longitude, meter_id, street_address));
+      cur.execute("""INSERT INTO polls_meter VALUES ('%s', '%s', '%s', %f, %f, '%s', '%s');""" % (processed,  active, area, latitude, longitude, meter_id, street_address));
+      conn.commit()
 
    print "PROCESSED from API: %d" % (processed)
 
 
-#loop();
-conn = psycopg2.connect("dbname='django' user='djangouser' host='localhost' password='dbpass'")
-cur = conn.cursor()
-cur.execute("""SELECT * from polls_meter""")
-rows = cur.fetchall()
+loop();
 
-for row in rows:
-    print "   ", row[0]
+#cur.execute("""SELECT * from polls_meter""")
+#rows = cur.fetchall()
+
+#for row in rows:
+#    print "   ", row[0], row
+
