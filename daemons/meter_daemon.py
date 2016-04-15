@@ -32,8 +32,8 @@ def loop():
       street_address = each.get('street_address', 'xxx');
 
       print("""INSERT INTO polls_meter VALUES ('%s', '%s', '%s', %f, %f, '%s', '%s');""" % (processed,  active, area, latitude, longitude, meter_id, street_address));
-      cur.execute("""INSERT INTO polls_meter VALUES ('%s', '%s', '%s', %f, %f, '%s', '%s');""" % (processed,  active, area, latitude, longitude, meter_id, street_address));
-      conn.commit()
+      #cur.execute("""INSERT INTO polls_meter VALUES ('%s', '%s', '%s', %f, %f, '%s', '%s');""" % (processed,  active, area, latitude, longitude, meter_id, street_address));
+      #conn.commit()
 
    print "PROCESSED from API: %d" % (processed)
 
