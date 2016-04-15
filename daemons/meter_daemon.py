@@ -49,7 +49,9 @@ def loop():
 
 
 #loop();
-conn = psycopg2.connect("dbname='django' user='djangouser' host='localhost' password='dbpass'")
+conn = psycopg2.connect("dbname='django' user='djangouser' host='127.0.0.1' password='dbpass'")
+#conn = psycopg2.connect("dbname='django' user='djangouser' host='localhost' password='dbpass'")
+#                                               djangouser
 cur = conn.cursor()
 cur.execute("""SELECT * from polls_meter""")
 rows = cur.fetchall()
