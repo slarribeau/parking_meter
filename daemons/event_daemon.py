@@ -31,16 +31,10 @@ def loop():
          session_id = each.get('session_id', 'xxx');
          cur.execute("""SELECT * from polls_meter WHERE meter_id = '%s';""" % (meter_id));
          result=cur.fetchone();
-
-         #id | event_id | event_time | event_type | ordinal | session_id | meter_id_id 
-
          print("""INSERT INTO polls_events (event_id, event_time, event_type, ordinal, session_id, meter_id_id) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');""" % (event_id, event_time, event_type, ordinal, session_id, result[0]));
+         cur.execute("""INSERT INTO polls_events (event_id, event_time, event_type, ordinal, session_id, meter_id_id) VALUES ('%s', '%s', '%s', '%s', '%s', '%s');""" % (event_id, event_time, event_type, ordinal, session_id, result[0]));
 
-#django=# insert into polls_events (event_id, event_time, event_type, ordinal, session_id, meter_id_id) values ('a', 'b', 'c', 'd', 'e', '25');
-
-
-         #cur.execute("""INSERT INTO polls_meter VALUES ('%s', '%s', '%s', %f, %f, '%s', '%s');""" % (processed,  active, area, latitude, longitude, meter_id, street_address));
-         #conn.commit()
+         conn.commit()
 
    print "PROCESSED from API: %d" % (processed)
 
